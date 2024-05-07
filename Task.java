@@ -26,4 +26,24 @@ public class Task {
         return importance;
     }
 
+    public void setImportance(int importance) {
+        this.importance = importance;
+    }
+
+    public int getDifficulty() {
+        return difficulty;
+    }
+
+    public void setDifficulty(int difficulty) {
+        this.difficulty = difficulty;
+    }
+
+    public int getInterest() {
+        return interest;
+    }
+
+    public void setInterest(int interest) {
+        this.interest = interest;
+    }
+
 }
