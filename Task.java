@@ -10,7 +10,7 @@ public class Task {
         this.importance = 0;
         this.difficulty = 0;
         this.interest = 0;
-        this.weight = 0;
+        this.weight = 0.0;
 
     }
 
