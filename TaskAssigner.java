@@ -40,4 +40,8 @@ public class TaskAssigner {
         return tasks.get(rand.nextInt(tasks.size()));
     }
 
+    public void calculateWeight(Task task) {
+
+    }
+
 }

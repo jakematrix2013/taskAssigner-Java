@@ -36,6 +36,9 @@ public class Main {
                     case 1:
                         System.out.print("Enter task name: ");
                         String taskName = scanner.nextLine();
+                        int importance = 0;
+                        int difficulty = 0;
+                        int interest = 0;
 
                         while (taskAssigner.taskNameTaken(taskName)) {
                             System.out.println("Task name taken, re-enter");
@@ -43,8 +46,38 @@ public class Main {
                             taskName = scanner.nextLine();
                         }
 
+                        // Accept difficulty, importance, and interest values
+                        while (importance < 1 || importance > 3) {
+                            System.out.print("Enter importance (1-3): ");
+                            importance = scanner.nextInt();
+                            if (importance < 1 || importance > 3) {
+                                System.out.println("Invalid input. Please enter a value between 1 and 3.");
+                            }
+                        }
+
+                        while (difficulty < 1 || difficulty > 3) {
+                            System.out.print("Enter difficulty (1-3): ");
+                            difficulty = scanner.nextInt();
+                            if (difficulty < 1 || difficulty > 3) {
+                                System.out.println("Invalid input. Please enter a value between 1 and 3.");
+                            }
+                        }
+
+                        while (interest < 1 || interest > 3) {
+                            System.out.print("Enter interest (1-3): ");
+                            interest = scanner.nextInt();
+                            if (interest < 1 || interest > 3) {
+                                System.out.println("Invalid input. Please enter a value between 1 and 3.");
+                            }
+                        }
+
+                        scanner.nextLine(); // Consume newline character after reading integers
+
                         Task newTask = new Task();
                         newTask.setName(taskName);
+                        newTask.setDifficulty(difficulty);
+                        newTask.setImportance(importance);
+                        newTask.setInterest(interest);
                         taskAssigner.addTask(newTask);
                         System.out.println("Task '" + taskName + "' added successfully!");
 

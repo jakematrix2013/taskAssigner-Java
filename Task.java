@@ -46,4 +46,12 @@ public class Task {
         this.interest = interest;
     }
 
+    public double getWeight() {
+        return weight;
+    }
+
+    public void setWeight(double weight) {
+        this.weight = weight;
+    }
+
 }
