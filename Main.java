@@ -23,6 +23,7 @@ public class Main {
                 System.out.println("1. Add a task");
                 System.out.println("2. List tasks");
                 System.out.println("3. Choose a random task");
+                System.out.println("4. Choose a task based on its weight");
                 System.out.print("Enter your choice: ");
                 choice = scanner.nextInt();
                 scanner.nextLine(); // Consume newline character?
@@ -78,7 +79,9 @@ public class Main {
                         newTask.setDifficulty(difficulty);
                         newTask.setImportance(importance);
                         newTask.setInterest(interest);
+                        taskAssigner.calculateWeight(newTask);
                         taskAssigner.addTask(newTask);
+
                         System.out.println("Task '" + taskName + "' added successfully!");
 
                         break;
@@ -87,7 +90,7 @@ public class Main {
                         System.out.println("List of tasks:");
                         List<Task> currentTasks = taskAssigner.getTasks();
                         for (Task task : currentTasks) {
-                            System.out.println(task.getName());
+                            System.out.println(task.getName() + " (Weight: " + task.getWeight() + ")");
                         }
                         break;
 
@@ -98,6 +101,16 @@ public class Main {
                         } else {
                             Task randomTask = availableTasks.get(random.nextInt(availableTasks.size()));
                             System.out.println("Randomly chosen task: " + randomTask.getName());
+                        }
+                        break;
+
+                    case 4:
+                        List<Task> tasks = taskAssigner.getTasks();
+                        if (tasks.isEmpty()) {
+                            System.out.println("No tasks available.");
+                        } else {
+                            Task chosenTask = taskAssigner.chooseWeightedTask();
+                            System.out.println("Algorithmically chosen task: " + chosenTask.getName());
                         }
                         break;
 

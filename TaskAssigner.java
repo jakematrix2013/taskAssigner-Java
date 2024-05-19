@@ -41,7 +41,40 @@ public class TaskAssigner {
     }
 
     public void calculateWeight(Task task) {
+        double importanceWeight = task.getImportance() * 0.6;
+        double difficultyWeight = task.getDifficulty() * 0.3;
+        double interestWeight = task.getInterest() * 0.1;
 
+        // Base weight calculation
+        double baseWeight = (importanceWeight + difficultyWeight + interestWeight) * (100.0 / 3.0);
+
+        // Add some randomness to the weight (+/- 5%)
+        double randomFactor = (rand.nextDouble() * 0.1) - 0.05;
+        double finalWeight = baseWeight * (1 + randomFactor);
+
+        // Ensure the weight is within the 0-100 range
+        finalWeight = Math.max(0, Math.min(100, finalWeight));
+
+        task.setWeight(finalWeight);
+
+    }
+
+    public Task chooseWeightedTask() {
+        if (tasks.isEmpty()) {
+            return null;
+        }
+
+        Task highestWeightTask = tasks.get(0);
+        double highestWeight = highestWeightTask.getWeight();
+
+        for (Task task : tasks) {
+            if (task.getWeight() > highestWeight) {
+                highestWeightTask = task;
+                highestWeight = task.getWeight();
+            }
+        }
+
+        return highestWeightTask;
     }
 
 }
