@@ -12,8 +12,20 @@ public class TaskAssigner {
         tasks = new ArrayList<>();
     }
 
-    public void addTask(Task task) {
-        tasks.add(task);
+    public boolean addTask(Task task) {
+        if (!taskNameTaken(task.getName())) {
+            tasks.add(task);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean taskNameTaken(String taskName) {
+        for (Task task : tasks) {
+            if (task.getName().equalsIgnoreCase(taskName))
+                return true;
+        }
+        return false;
     }
 
     public void deleteTask(Task task) {

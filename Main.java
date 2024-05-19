@@ -1,6 +1,6 @@
 import java.util.Scanner;
 import java.util.List;
-import java.util.ArrayList;
+//import java.util.ArrayList;
 import java.util.Random;
 
 public class Main {
@@ -10,7 +10,7 @@ public class Main {
         Random random = new Random();
         Scanner scanner = new Scanner(System.in);
 
-        List<Task> tasks = new ArrayList<>();
+        // List<Task> tasks = new ArrayList<>();
 
         TaskAssigner taskAssigner = new TaskAssigner();
 
@@ -37,10 +37,17 @@ public class Main {
                         System.out.print("Enter task name: ");
                         String taskName = scanner.nextLine();
 
+                        while (taskAssigner.taskNameTaken(taskName)) {
+                            System.out.println("Task name taken, re-enter");
+                            System.out.print("Enter task name: ");
+                            taskName = scanner.nextLine();
+                        }
+
                         Task newTask = new Task();
                         newTask.setName(taskName);
                         taskAssigner.addTask(newTask);
                         System.out.println("Task '" + taskName + "' added successfully!");
+
                         break;
 
                     case 2:
