@@ -27,7 +27,7 @@ public class TaskFileManager {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split(",");
-                if (parts.length == 2) {
+                if (parts.length == 5) {
                     String name = parts[0];
                     int importance = Integer.parseInt(parts[1]);
                     int difficulty = Integer.parseInt(parts[2]);
