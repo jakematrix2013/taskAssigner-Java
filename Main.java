@@ -14,6 +14,18 @@ public class Main {
 
         TaskAssigner taskAssigner = new TaskAssigner();
 
+        System.out.print("Do you wanna load up the task list? 1 - yes, 0 - no");
+        boolean loadChoice = scanner.nextBoolean();
+
+        if (loadChoice) {
+            // this is wrong gotta change
+            List<Task> loadedTasks = TaskFileManager.loadTasksFromFile("tasks.txt");
+            for (Task task : loadedTasks) {
+                taskAssigner.addTask(task);
+            }
+            System.out.println("Loaded.");
+        }
+
         int choice = -1;
         do {
             try {
@@ -31,6 +43,13 @@ public class Main {
                 switch (choice) {
 
                     case 0:
+                        // Asking the user if they want to save the tasks to a file
+                        System.out.print("Do you want to save the current task list? 1 - yes, 0 - no: ");
+                        boolean saveChoice = scanner.nextBoolean();
+                        if (saveChoice) {
+                            TaskFileManager.saveTasksToFile(taskAssigner.getTasks(), "tasks.txt");
+                            System.out.println("Tasks saved successfully.");
+                        }
                         System.out.println("Exiting.");
                         break;
 

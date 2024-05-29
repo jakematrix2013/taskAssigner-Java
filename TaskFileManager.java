@@ -1,6 +1,7 @@
 import java.io.FileWriter;
 import java.io.FileReader;
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 import java.util.ArrayList;
@@ -43,6 +44,8 @@ public class TaskFileManager {
                 }
             }
             System.out.println("Tasks loaded successfully from " + filename);
+        } catch (FileNotFoundException e) {
+            System.out.println("The file " + filename + " was not found.");
         } catch (IOException e) {
             System.out.println("An error occurred while loading tasks from " + filename);
             e.printStackTrace();
